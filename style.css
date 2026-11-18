@@ -1,0 +1,50 @@
+:root {
+  font-family: system-ui, sans-serif;
+  color: #182636;
+  background: #f2f5f7;
+  line-height: 1.6;
+  --rouge: #c73939;
+  --bleu: #2469bc;
+  --vert: #298448;
+  --jaune: #f1cb32;
+  --orange: #e38224;
+  --violet: #894bb0;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+main { width: min(100% - 2rem, 780px); margin: 2rem auto; }
+h1 { font-size: clamp(1.8rem, 5vw, 2.5rem); line-height: 1.2; margin: .5rem 0; }
+h2 { font-size: 1.25rem; margin: 0 0 .8rem; }
+p { margin: .7rem 0; }
+header { margin-bottom: 1.5rem; }
+.eyebrow, footer { font-size: .9rem; color: #48576a; }
+section { background: #fff; border: 1px solid #d5dee6; border-radius: 12px; padding: 1.3rem; margin: 1rem 0; }
+.section-heading { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: .5rem; }
+#attempts { font-weight: 700; margin: 0; }
+fieldset { padding: 0; margin: 0; border: 0; min-width: 0; }
+legend { margin-bottom: 1rem; }
+.choices { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .8rem; }
+label { display: flex; flex-direction: column; gap: .5rem; font-weight: 600; }
+.swatch { width: 32px; height: 32px; border: 1px solid #647486; border-radius: 50%; background: #fff; display: inline-block; flex-shrink: 0; }
+select, button { font: inherit; min-height: 46px; border-radius: 6px; }
+select { width: 100%; padding: .4rem; border: 1px solid #647486; color: #182636; background: #fff; }
+button { padding: .6rem 1rem; border: 2px solid #224e78; background: #224e78; color: white; cursor: pointer; font-weight: 600; }
+.secondary { background: white; color: #224e78; }
+button:hover { filter: brightness(.93); }
+button:disabled, fieldset:disabled button { opacity: .55; cursor: default; }
+:focus-visible { outline: 3px solid #aa4717; outline-offset: 3px; }
+#status { font-weight: 600; }
+#error { color: #a32222; font-weight: 600; }
+#selection-help { font-size: .9rem; color: #48576a; }
+#history { margin: 0; padding-left: 1.8rem; }
+#history > li { border-top: 1px solid #d5dee6; padding: 1rem 0; }
+.guess-colors { display: flex; flex-wrap: wrap; gap: .5rem 1rem; }
+.color-label { display: inline-flex; align-items: center; gap: .35rem; }
+.color-label .swatch { width: 18px; height: 18px; }
+.result { margin-bottom: 0; font-weight: 600; }
+@media (max-width: 520px) {
+  main { margin: 1rem auto; }
+  section { padding: 1rem; }
+  .choices { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  button { width: 100%; }
+}

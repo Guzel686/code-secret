@@ -1,0 +1,6 @@
+{
+  "name": "code-secret-en-couleurs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": { "test": "node --test tests/game.test.cjs" }
+}
