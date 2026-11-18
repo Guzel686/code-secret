@@ -28,6 +28,33 @@ Question ouverte : l’affichage et les commandes seront-ils assez pratiques sur
 
 ## Vérifications
 
+### Atelier 5 et préparation J1
+
+Scénarios définis le 18 novembre 2026 avant réexécution, version de départ `6c32992` :
+
+| Type | Départ connu et action | Résultat attendu | Obtenu |
+| --- | --- | --- | --- |
+| Normal | Secret rouge–bleu–vert–jaune ; proposer rouge–vert–bleu–orange | 1 bien placée, 2 mal placées ; 1 essai et 1 entrée | Conforme, test moteur automatisé T01 |
+| Limite | Secret rouge–rouge–bleu–vert ; proposer rouge–rouge–rouge–rouge | 2 bien placées, 0 mal placée ; 1 essai et 1 entrée | Conforme, moteur et interface automatisés |
+| Négatif | Nouvelle partie ; sélectionner trois couleurs et valider | Refus expliqué ; 0 essai et historique vide | Conforme, moteur et interface automatisés |
+
+Exercice 5.2 : réutiliser `tests/game.test.cjs` et `tests/browser.test.cjs`, sans modifier les règles. Le premier compare les nombres calculés aux valeurs attendues ; le second actionne la vraie page et vérifie les textes, le compteur et l’historique. Aucun bonus de mutation volontaire n’est réalisé.
+
+Exécution du 18 novembre : `node --test tests/game.test.cjs tests/browser.test.cjs` ; **8 tests exécutés, 8 réussis, 0 échec** sur le code du commit `6c32992` (seul le README a changé depuis). Chrome sans fenêtre, fichiers locaux, largeur mobile simulée. Playwright est fourni par l’environnement Codex via `NODE_PATH` ; `CODE_SECRET_BROWSER` indique le chemin du navigateur installé. Aucun test manuel personnel ni sur le site publié n’est revendiqué.
+
+Préparation J1 (20 novembre au soir) :
+
+- [x] Jeu local, README et AGENTS dans le même projet ; étapes enregistrées en commits.
+- [x] Trois scénarios, résultats attendus puis obtenus ; tests automatisés réutilisés et exécutés.
+- [x] Choix de conception et ajout de la première version expliqués ci-dessous.
+- [ ] Relire personnellement les choix et essayer le jeu.
+- [ ] Publier le dépôt et GitHub Pages, puis ouvrir le lien publié et jouer un coup.
+- [ ] Réaliser le test croisé avec un binôme demandé par l’atelier ; noter ses observations réelles.
+- [ ] Créer et envoyer le tag `jalon-1` sur le commit testé publié.
+- [ ] Préparer `jalon1_nomdefamille.docx` avec les liens du dépôt et du jeu, et le tag ; déposer sur Cyberlearn.
+
+Pas de vidéo demandée à J1. La copie privée des conversations pour l’étude reste facultative et à effectuer personnellement selon les consentements ; elle ne va pas dans le dépôt public.
+
 Résultats attendus définis avant la réalisation :
 
 | Cas | Manipulation | Attendu | Observé |
@@ -63,4 +90,4 @@ Le secret imposé est réservé aux vérifications prévues par le contrat 0.2. 
 
 ## Limites
 
-Jeu et API vérifiés localement sur les cas indiqués ; les tests ne prouvent pas tous les comportements possibles. Reste à faire : relecture et essai personnel par l’auteur, commits, publication GitHub Pages et contrôle de l’API sur l’URL publiée, essai sur un vrai smartphone, retour sur le jeu d’un camarade et capsule J2. Aucune correction d’un défaut réel du jeu avec preuves avant/après n’est encore documentée. Aucun lien public ni tag de jalon n’est encore créé.
+Jeu et API vérifiés localement sur les cas indiqués ; les tests ne prouvent pas tous les comportements possibles. Reste à faire : les cases ouvertes de J1 ci-dessus, puis pour J2 le contrôle de conformité de l’API sur l’URL publiée, un essai sur un vrai smartphone, le retour sur le jeu d’un camarade et la capsule. Aucune correction d’un défaut réel du jeu avec preuves avant/après n’est encore documentée ; l’atelier 5 permet un ajout expliqué pour J1, décrit ci-dessus. Aucun lien public ni tag de jalon n’est encore créé.
