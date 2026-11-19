@@ -14,7 +14,7 @@ test("Interface, mode API et affichage à largeur mobile", async () => {
     const page = await browser.newPage();
     const errors = [];
     page.on("pageerror", error => errors.push(error.message));
-    const url = pathToFileURL(path.resolve(__dirname, "../index.html")).href;
+    const url = process.env.CODE_SECRET_URL || pathToFileURL(path.resolve(__dirname, "../index.html")).href;
     await page.goto(url);
     assert.equal(await page.evaluate(() => typeof window.codeSecretTest), "undefined");
 

@@ -4,11 +4,15 @@ Jeu solo inspiré du Mastermind, réalisé avec Codex dans le cadre de l’ateli
 
 Version : **0.1.0**, première version locale du 11 novembre 2026. Pour jouer, ouvrir `index.html` dans un navigateur. Choisir quatre couleurs et valider. Au clavier : Tab pour changer de commande, flèches pour choisir une couleur et Entrée pour valider.
 
+Jeu publié : https://guzel686.github.io/code-secret/
+Dépôt : https://github.com/Guzel686/code-secret
+Version remise J1 : tag [`jalon-1`](https://github.com/Guzel686/code-secret/tree/jalon-1). Ce tag repère la version remise ; le site peut évoluer après ce jalon.
+
 Les fichiers `index.html` et `style.css` décrivent la page et son apparence. `game.js` contient les règles ; `app.js` relie les commandes visibles au même moteur que l’API. Aucune installation ni connexion n’est nécessaire pour jouer localement.
 
 ## Règles et sources
 
-Références : énoncé du projet édition 2.1, annexe `code-couleurs-1.0`, contrat API commune 0.2 et atelier 4 du 11 novembre 2026 (exercices 4.1 et 4.2). Documents fournis dans la conversation ; supports de cours conservés dans le dossier voisin `jeu`.
+Références : énoncé du projet édition 2.1, annexe `code-couleurs-1.0`, contrat API commune 0.2, atelier 5 du 18 novembre 2026 et atelier 4 du 11 novembre 2026 (exercices 4.1 et 4.2). Documents fournis dans la conversation ; supports de cours conservés dans le dossier voisin `jeu`.
 
 - Code secret aléatoire de quatre couleurs parmi rouge, bleu, vert, jaune, orange, violet. Répétitions autorisées.
 - Dix essais maximum ; une proposition complète contient quatre couleurs ordonnées.
@@ -22,11 +26,38 @@ Références : énoncé du projet édition 2.1, annexe `code-couleurs-1.0`, cont
 
 Proposition de conception de Codex : une seule page, quatre listes de couleurs avec leurs noms et un aperçu coloré, deux boutons et un historique. Les noms permettent de jouer sans devoir distinguer les nuances. HTML, CSS et JavaScript sans framework pour faciliter la compréhension et la reprise.
 
-Périmètre de la séance : exercices 4.1 et 4.2. Les exercices bonus 4.3 et 4.4 ne sont pas réalisés.
+Périmètre : base des ateliers 4 et 5. Les exercices bonus ne sont pas réalisés.
 
 Question ouverte : l’affichage et les commandes seront-ils assez pratiques sur mon smartphone ? À vérifier sur un appareil réel, en notant son modèle et le résultat.
 
 ## Vérifications
+
+### Essais manuels de l’auteur
+
+Résultats déclarés par l’auteur le **18 novembre 2026**, sur **Chrome**, à partir du jeu publié (code du commit `c41e6fd`).
+
+| Test | Attendu | Résultat déclaré |
+| --- | --- | --- |
+| 1 — Trois couleurs | Refus expliqué ; compteur à 0/10 et historique vide | Réussi |
+| 2 — Ajout de la quatrième couleur | Compteur à 1/10 ; proposition et indices dans l’historique ; erreur effacée | Réussi |
+| 3 — Nouvelle partie | Compteur à 0/10, historique et indices vidés, quatre choix réinitialisés et erreur effacée | Réussi |
+| 4 — Répétitions | Secret imposé rouge–rouge–bleu–vert ; quatre rouges donnent 2 bien placées et 0 mal placée, compteur à 1/10 | Réussi |
+| 5 — Victoire | Dans la même partie, rouge–rouge–bleu–vert donne 4 bien placées et 0 mal placée, victoire en 2 essais, validation désactivée | Réussi |
+
+Les cinq résultats ont été confirmés par l’auteur après exécution manuelle sur Chrome. Pour les tests 4 et 5, le secret a été imposé avec `window.codeSecretTest.startGame` en mode `?test=1`, sans redémarrage entre les deux propositions.
+
+### Retour du binôme
+
+Retour transmis par l’auteur le **19 novembre 2026**, sur le jeu publié.
+
+| Manipulation | Attendu | Observé selon le retour transmis |
+| --- | --- | --- |
+| Valider trois couleurs | Refus sans consommer d’essai | Conforme |
+| Valider quatre couleurs | Un essai ajouté avec ses indices | Conforme |
+| Nouvelle partie | Remise à zéro | Conforme |
+| Jouer librement | Partie utilisable ; signaler les problèmes | Aucun problème signalé ; une partie gagnée en 6 essais |
+
+Navigateur, appareil et date exacte d’exécution non précisés. Une partie gagnée ne valide pas tous les indices possibles.
 
 ### Atelier 5 et préparation J1
 
@@ -40,18 +71,22 @@ Scénarios définis le 18 novembre 2026 avant réexécution, version de départ 
 
 Exercice 5.2 : réutiliser `tests/game.test.cjs` et `tests/browser.test.cjs`, sans modifier les règles. Le premier compare les nombres calculés aux valeurs attendues ; le second actionne la vraie page et vérifie les textes, le compteur et l’historique. Aucun bonus de mutation volontaire n’est réalisé.
 
-Exécution du 18 novembre : `node --test tests/game.test.cjs tests/browser.test.cjs` ; **8 tests exécutés, 8 réussis, 0 échec** sur le code du commit `6c32992` (seul le README a changé depuis). Chrome sans fenêtre, fichiers locaux, largeur mobile simulée. Playwright est fourni par l’environnement Codex via `NODE_PATH` ; `CODE_SECRET_BROWSER` indique le chemin du navigateur installé. Aucun test manuel personnel ni sur le site publié n’est revendiqué.
+Exécution du 18 novembre : `node --test tests/game.test.cjs tests/browser.test.cjs` ; **8 tests exécutés, 8 réussis, 0 échec** sur le code du commit `6c32992` (seul le README a changé depuis). Chrome sans fenêtre, fichiers locaux, largeur mobile simulée. Playwright est fourni par l’environnement Codex via `NODE_PATH` ; `CODE_SECRET_BROWSER` indique le chemin du navigateur installé. À cette étape locale, aucun essai personnel de l’auteur n’est revendiqué. La vérification ultérieure du site publié est décrite ci-dessous.
+
+Publication vérifiée le 18 novembre 2026 : les mêmes commandes ont donné **8 réussites et 0 échec**, cette fois avec `CODE_SECRET_URL=https://guzel686.github.io/code-secret/`. Les sept tests du moteur restent locaux ; le scénario navigateur ouvre la vraie URL publique et joue plusieurs coups, vérifie une saisie refusée, l’historique, l’API, une victoire au dixième essai, le redémarrage et le clavier. Jeu publié correspondant au commit `c41e6fd` ; les fichiers du jeu n’ont pas changé pour la préparation du tag. La seule adaptation du test est le choix de l’URL par la variable `CODE_SECRET_URL`.
+
+Contrôle final du 19 novembre 2026 : même commande, **8 tests réussis, 0 échec**, dont le scénario navigateur sur le site publié. Les cinq fichiers du jeu (`index.html`, `style.css`, `game.js`, `app.js`, `package.json`) sont inchangés depuis la version testée par l’auteur et son binôme.
 
 Préparation J1 (20 novembre au soir) :
 
 - [x] Jeu local, README et AGENTS dans le même projet ; étapes enregistrées en commits.
 - [x] Trois scénarios, résultats attendus puis obtenus ; tests automatisés réutilisés et exécutés.
 - [x] Choix de conception et ajout de la première version expliqués ci-dessous.
-- [ ] Relire personnellement les choix et essayer le jeu.
-- [ ] Publier le dépôt et GitHub Pages, puis ouvrir le lien publié et jouer un coup.
-- [ ] Réaliser le test croisé avec un binôme demandé par l’atelier ; noter ses observations réelles.
-- [ ] Créer et envoyer le tag `jalon-1` sur le commit testé publié.
-- [ ] Préparer `jalon1_nomdefamille.docx` avec les liens du dépôt et du jeu, et le tag ; déposer sur Cyberlearn.
+- [x] Relire les documents et réaliser les cinq essais personnels (confirmations de l’auteur).
+- [x] Publier le dépôt et GitHub Pages, puis ouvrir le lien publié et jouer un coup (contrôle automatisé).
+- [x] Recueillir le retour du binôme sur ce jeu : conforme, partie gagnée en 6 essais.
+- [x] Documents relus par l’auteur ; version de remise repérée par le tag `jalon-1` sur GitHub.
+- [ ] Remplacer `nomdefamille` dans le nom du Word final puis le déposer sur Cyberlearn ; le fichier reste hors du dépôt public.
 
 Pas de vidéo demandée à J1. La copie privée des conversations pour l’étude reste facultative et à effectuer personnellement selon les consentements ; elle ne va pas dans le dépôt public.
 
@@ -71,7 +106,7 @@ Correction du test navigateur : le premier contrôle utilisait `isDisabled()` su
 
 Le cadrage de l’exercice 4.1 est enregistré dans le commit `a179812`. La première version jouable est enregistrée dans le commit suivant, intitulé « Créer et vérifier la première version — exercice 4.2 ».
 
-Ajout expliqué pour J1 : le cadrage seul ne permettait pas de jouer. Ajout d’une page avec quatre sélecteurs et d’un moteur commun au jeu et à l’API. Avant validation, les choix restent modifiables. Avec seulement trois couleurs, le moteur refuse la saisie et l’interface affiche l’explication sans ajouter d’essai. Les deux premiers scénarios du tableau vérifient cet ajout. Codex a proposé et réalisé la structure ; l’auteur doit encore relire et essayer personnellement la page.
+Ajout expliqué pour J1 : le cadrage seul ne permettait pas de jouer. Ajout d’une page avec quatre sélecteurs et d’un moteur commun au jeu et à l’API. Avant validation, les choix restent modifiables. Avec seulement trois couleurs, le moteur refuse la saisie et l’interface affiche l’explication sans ajouter d’essai. Les deux premiers scénarios du tableau vérifient cet ajout. Codex a proposé et réalisé la structure ; l’auteur a confirmé les cinq essais manuels et a relu les documents ; le retour du binôme est consigné ci-dessus.
 
 ## API commune
 
@@ -90,4 +125,4 @@ Le secret imposé est réservé aux vérifications prévues par le contrat 0.2. 
 
 ## Limites
 
-Jeu et API vérifiés localement sur les cas indiqués ; les tests ne prouvent pas tous les comportements possibles. Reste à faire : les cases ouvertes de J1 ci-dessus, puis pour J2 le contrôle de conformité de l’API sur l’URL publiée, un essai sur un vrai smartphone, le retour sur le jeu d’un camarade et la capsule. Aucune correction d’un défaut réel du jeu avec preuves avant/après n’est encore documentée ; l’atelier 5 permet un ajout expliqué pour J1, décrit ci-dessus. Aucun lien public ni tag de jalon n’est encore créé.
+Jeu et API vérifiés sur les cas indiqués, localement et via le scénario navigateur publié ; les tests ne prouvent pas tous les comportements possibles ni la conformité complète de l’API. Reste à faire : les cases ouvertes de J1 ci-dessus, puis pour J2 le contrôle complet de conformité de l’API, un essai sur un vrai smartphone, le retour sur le jeu d’un camarade et la capsule. Aucune correction d’un défaut réel du jeu avec preuves avant/après n’est encore documentée ; l’atelier 5 permet un ajout expliqué pour J1, décrit ci-dessus.
