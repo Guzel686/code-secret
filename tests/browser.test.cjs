@@ -56,7 +56,7 @@ test("Pastilles, clavier, règles, API et historique compact sur mobile", async 
         for(let i=0;i<9;i++) await api.submitGuess(Array(4).fill("bleu"));
         await api.submitGuess(Array(4).fill("rouge"));
       });
-      assert.match(await page.locator("#status").innerText(),/Bravo.*10 essais/);
+      assert.match(await page.locator("#status").innerText(),/🏆 Bravo.*10 essais/);
       assert.equal(await page.locator("#history > li").count(),10);
       assert.equal(await validate.isDisabled(),true);
       assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,`largeur ${width}`);

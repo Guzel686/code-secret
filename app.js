@@ -31,7 +31,7 @@ function render(state) {
   const messages = {
     "not-started":"Cliquez sur Nouvelle partie pour commencer.",
     playing:"À vous de trouver le code !",
-    won:`Bravo ! Code trouvé en ${state.attempts} essai${state.attempts > 1 ? "s" : ""}.`,
+    won:`🏆 Bravo ! Code trouvé en ${state.attempts} essai${state.attempts > 1 ? "s" : ""}.`,
     lost:"10 essais écoulés. Partie perdue. Recommencez !"
   };
   document.querySelector("#status").textContent = messages[state.status];

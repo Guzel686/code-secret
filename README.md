@@ -2,7 +2,7 @@
 
 Jeu solo inspiré du Mastermind, réalisé avec Codex dans le cadre de l’atelier de technologie émergente. L’objectif est une application simple, compréhensible et utilisable sur ordinateur et smartphone.
 
-Version actuelle : **0.2.0**, interface compacte du 25 novembre 2026. La version J1 (0.1.0) est conservée par le tag `jalon-1`. Pour jouer, ouvrir `index.html` dans un navigateur. Choisir quatre couleurs et valider. Au clavier : Tab pour changer de commande, Entrée ou Espace pour activer une pastille ; Échap ferme les règles.
+Version actuelle : **0.2.1**, interface compacte du 25 novembre 2026. La version J1 (0.1.0) est conservée par le tag `jalon-1`. Pour jouer, ouvrir `index.html` dans un navigateur. Choisir quatre couleurs et valider. Au clavier : Tab pour changer de commande, Entrée ou Espace pour activer une pastille ; Échap ferme les règles.
 
 Jeu publié : https://guzel686.github.io/code-secret/
 Dépôt : https://github.com/Guzel686/code-secret
@@ -11,6 +11,10 @@ Version remise J1 : tag [`jalon-1`](https://github.com/Guzel686/code-secret/tree
 Les fichiers `index.html` et `style.css` décrivent la page et son apparence. `game.js` contient les règles ; `app.js` relie les commandes visibles au même moteur que l’API. Aucune installation ni connexion n’est nécessaire pour jouer localement.
 
 ## Évolution J2 du 25 novembre 2026
+
+### Coupe de victoire
+
+À la demande de l’auteur, la version 0.2.1 ajoute une coupe 🏆 au message de victoire. Aucun effet animé ni changement des règles ; le test navigateur vérifie sa présence lors de la victoire au dixième essai.
 
 ### Clarification des indices
 
