@@ -2,13 +2,29 @@
 
 Jeu solo inspiré du Mastermind, réalisé avec Codex dans le cadre de l’atelier de technologie émergente. L’objectif est une application simple, compréhensible et utilisable sur ordinateur et smartphone.
 
-Version : **0.1.0**, première version locale du 11 novembre 2026. Pour jouer, ouvrir `index.html` dans un navigateur. Choisir quatre couleurs et valider. Au clavier : Tab pour changer de commande, flèches pour choisir une couleur et Entrée pour valider.
+Version actuelle : **0.2.0**, interface compacte du 25 novembre 2026. La version J1 (0.1.0) est conservée par le tag `jalon-1`. Pour jouer, ouvrir `index.html` dans un navigateur. Choisir quatre couleurs et valider. Au clavier : Tab pour changer de commande, Entrée ou Espace pour activer une pastille ; Échap ferme les règles.
 
 Jeu publié : https://guzel686.github.io/code-secret/
 Dépôt : https://github.com/Guzel686/code-secret
 Version remise J1 : tag [`jalon-1`](https://github.com/Guzel686/code-secret/tree/jalon-1). Ce tag repère la version remise ; le site peut évoluer après ce jalon.
 
 Les fichiers `index.html` et `style.css` décrivent la page et son apparence. `game.js` contient les règles ; `app.js` relie les commandes visibles au même moteur que l’API. Aucune installation ni connexion n’est nécessaire pour jouer localement.
+
+## Évolution J2 du 25 novembre 2026
+
+**Avant modification.** L’auteur confirme le bon fonctionnement de la version à listes déroulantes sur son vrai smartphone **Fairphone 3, Chrome** : sélection et validation de quatre couleurs, un essai consommé, indices et historique lisibles, aucun problème signalé. Il demande ensuite des pastilles identifiables et une interface plus compacte.
+
+**Choix validé avec l’auteur.** Quatre emplacements numérotés et six pastilles R, B, V, J, O et Vi. Le nom complet reste affiché sous chaque couleur et est accessible aux lecteurs d’écran. Toucher une pastille remplit la position active et passe à la suivante ; toucher un emplacement permet de le modifier avant validation. Les boutons natifs fonctionnent aussi au clavier. Le bouton « Règles » ouvre une fenêtre avec les règles complètes ; le rappel 4 couleurs / 10 essais / répétitions reste affiché. Aucune règle ni fonction API ne change. Pas de PWA, de sauvegarde de partie ou de bouton QR ajouté.
+
+**Attendu avant vérification.** Refuser trois couleurs sans essai ; accepter et compter quatre couleurs ; permettre une modification avant validation ; conserver les indices API et l’état à l’écran ; ouvrir et fermer les règles au clavier ; garder les commandes et les dix essais accessibles sur mobile sans défilement global aux formats ciblés.
+
+**Obtenu le 25 novembre.** `node --test tests/game.test.cjs tests/browser.test.cjs` : **8 tests réussis, 0 échec** sur la version locale 0.2.0. Le parcours navigateur a été adapté aux boutons. Il vérifie les cas précédents, la victoire au dixième essai et le redémarrage. Pas de débordement horizontal ou vertical de la page après dix essais à **375 × 667, 360 × 640, 320 × 568 et 1280 × 800** pixels, avec zoom standard. L’historique dispose d’une région défilante accessible au clavier : les dix essais restent dans le document, sans être supprimés. Capture mobile 375 × 667 examinée visuellement.
+
+**Limites.** Le retour Fairphone concerne la version avant cette modification ; l’interface à pastilles doit encore être réessayée sur cet appareil. Des écrans plus petits, le zoom ou des polices agrandies peuvent nécessiter un défilement pour préserver la lisibilité. Les règles défilent dans leur fenêtre si nécessaire. L’API n’est pas encore déclarée entièrement conforme : ses vérifications seront complétées pour J2.
+
+**Exercice 6.1, essai manuel API avant modification.** L’auteur a ouvert le jeu publié avec `?test=1`, constaté `version: "0.2"` et les quatre fonctions, puis imposé rouge–rouge–bleu–vert. Départ observé : `playing`, 0 essai, historique vide. Une proposition de quatre rouges envoyée via `submitGuess` a donné 2 bien placées, 0 mal placée, 1 essai, `lastError: null` ; l’écran et la console correspondent selon sa confirmation. Ce test ciblé ne prouve pas tous les points du contrat.
+
+Les sections de cadrage et de vérification J1 ci-dessous décrivent la version initiale à listes et ses preuves historiques.
 
 ## Règles et sources
 

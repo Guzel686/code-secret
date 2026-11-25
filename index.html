@@ -9,55 +9,46 @@
   <script src="./app.js" defer></script>
 </head>
 <body>
-  <main>
-    <header>
-      <p class="eyebrow">Un jeu de logique · Version 0.1.0</p>
-      <h1>Code secret en couleurs</h1>
-      <p>Quatre couleurs à retrouver. Dix essais pour trouver leur ordre.</p>
-    </header>
-
-    <section aria-labelledby="rules-title">
-      <h2 id="rules-title">Les règles</h2>
-      <p>Le code caché contient quatre couleurs parmi rouge, bleu, vert, jaune, orange et violet.
-        Une couleur peut apparaître plusieurs fois.</p>
-      <p>Après chaque essai, deux nombres vous aident :</p>
-      <ul>
-        <li><strong>Bien placées</strong> : bonne couleur à la bonne position.</li>
-        <li><strong>Mal placées</strong> : bonne couleur à une autre position.</li>
-      </ul>
-      <p>Chaque couleur du code compte une seule fois. Les indices ne désignent aucune position.
-        Trouvez les quatre positions en dix essais maximum pour gagner.</p>
-    </section>
-
-    <section aria-labelledby="play-title">
-      <div class="section-heading">
-        <h2 id="play-title">Votre proposition</h2>
-        <p id="attempts">Essais : 0 / 10</p>
-      </div>
-      <p id="status" role="status" aria-live="polite"></p>
-      <form id="guess-form" novalidate>
-        <fieldset id="guess-fields">
-          <legend>Choisissez les quatre couleurs de gauche à droite.</legend>
-          <div class="choices">
-            <label>Position 1 <span class="swatch" aria-hidden="true"></span><select name="color1" aria-describedby="selection-help"><option value="">Choisir…</option></select></label>
-            <label>Position 2 <span class="swatch" aria-hidden="true"></span><select name="color2" aria-describedby="selection-help"><option value="">Choisir…</option></select></label>
-            <label>Position 3 <span class="swatch" aria-hidden="true"></span><select name="color3" aria-describedby="selection-help"><option value="">Choisir…</option></select></label>
-            <label>Position 4 <span class="swatch" aria-hidden="true"></span><select name="color4" aria-describedby="selection-help"><option value="">Choisir…</option></select></label>
-          </div>
-          <p id="selection-help">Vous pouvez modifier vos choix avant de valider.</p>
-          <button type="submit">Valider la proposition</button>
-        </fieldset>
-      </form>
-      <p id="error" role="alert"></p>
-      <button id="new-game" class="secondary" type="button">Nouvelle partie</button>
-    </section>
-
-    <section aria-labelledby="history-title">
-      <h2 id="history-title">Les essais précédents</h2>
-      <p id="empty-history">Aucun essai pour le moment.</p>
-      <ol id="history" aria-label="Historique des propositions"></ol>
-    </section>
-    <footer>Règles : code-couleurs-1.0 · API : 0.2</footer>
-  </main>
+<main>
+  <header>
+    <div><p class="eyebrow">Un jeu de logique · v0.2.0</p><h1>Code secret</h1></div>
+    <button id="show-rules" class="secondary" type="button" aria-haspopup="dialog">Règles</button>
+  </header>
+  <p class="reminder">4 couleurs à trouver · 10 essais<br>Les couleurs peuvent se répéter.</p>
+  <section class="play" aria-labelledby="play-title">
+    <div class="section-heading"><h2 id="play-title">Votre proposition</h2><p id="attempts">Essais : 0 / 10</p></div>
+    <p id="status" role="status"></p>
+    <form id="guess-form" novalidate>
+      <fieldset id="guess-fields">
+        <legend>Choisissez une position, puis une couleur.</legend>
+        <div id="slots" class="slots" role="group" aria-label="Les quatre positions"></div>
+        <div id="palette" class="palette" role="group" aria-label="Choisir une couleur"></div>
+        <p id="selection-help" role="status">Couleur suivante : position 1.</p>
+        <button class="validate" type="submit">Valider la proposition</button>
+      </fieldset>
+    </form>
+    <p id="error" role="alert"></p>
+    <button id="new-game" class="secondary new-game" type="button">Nouvelle partie</button>
+  </section>
+  <section class="history-section" aria-labelledby="history-title">
+    <div class="section-heading"><h2 id="history-title">Vos essais</h2><span class="history-key">Bien / Mal</span></div>
+    <p id="empty-history">Aucun essai pour le moment.</p>
+    <div id="history-scroll" tabindex="0" role="region" aria-label="Historique défilant des essais">
+      <ol id="history"></ol>
+    </div>
+  </section>
+  <footer>Règles communes 1.0 · API 0.2</footer>
+</main>
+<dialog id="rules" aria-labelledby="rules-title">
+  <div class="section-heading"><h2 id="rules-title">Comment jouer</h2><button id="close-rules" class="secondary" type="button">Fermer</button></div>
+  <p>Retrouvez un code caché de quatre couleurs, parmi rouge, bleu, vert, jaune, orange et violet. Une couleur peut se répéter ; le code reste fixe pendant la partie.</p>
+  <p>Choisissez les quatre positions de gauche à droite. Touchez une position pour la modifier, puis une couleur. Vous pouvez tout modifier avant de valider.</p>
+  <p><strong>Bien placées</strong> : bonne couleur à la bonne position.<br><strong>Mal placées</strong> : couleur présente à une autre position.</p>
+  <p>Les bien placées sont comptées d’abord, puis les mal placées parmi les occurrences restantes. Chaque occurrence compte une seule fois. Les indices ne désignent pas les positions.</p>
+  <p>Vous avez dix essais. Une proposition incomplète est refusée sans consommer d’essai. Quatre bien placées donnent la victoire, même au dixième essai ; sinon, la partie est perdue après dix essais.</p>
+  <p>Après la fin, vous ne pouvez plus proposer de code. L’historique reste consultable dans sa zone défilante. « Nouvelle partie » tire un code et remet tout à zéro.</p>
+  <p><strong>Repères :</strong> R = rouge · B = bleu · V = vert · J = jaune · O = orange · Vi = violet. Les noms restent aussi affichés sous la palette.</p>
+  <p><strong>Clavier :</strong> Tab pour naviguer, Entrée ou Espace pour choisir. Échap ferme ces règles.</p>
+</dialog>
 </body>
 </html>
