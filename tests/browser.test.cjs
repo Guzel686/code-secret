@@ -46,7 +46,7 @@ test("Pastilles, clavier, règles, API et historique compact sur mobile", async 
     for(let i=0;i<3;i++) await choose("rouge");
     await validate.click();
     assert.deepEqual(await page.evaluate(()=>window.codeSecretTest.getState().lastResult),{wellPlaced:2,misplaced:0});
-    assert.equal(await page.locator(".result").innerText(),"2 / 0");
+    assert.equal(await page.locator(".result").innerText(),"Bien placées : 2\nMal placées : 0");
     assert.deepEqual(await page.locator("#history .disc").allTextContents(),["R","R","R","R"]);
     for(const [width,height] of [[375,667],[360,640],[320,568],[1280,800]]) {
       await page.setViewportSize({width,height});

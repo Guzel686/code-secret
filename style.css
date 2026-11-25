@@ -50,7 +50,7 @@ button:disabled { opacity:.5; cursor:default; }
 .attempt-number { width:1.3em; font-size:.75rem; color:#4b5c6d; }
 .guess-colors { display:flex; gap:5px; }
 .guess-colors .disc { width:27px; height:27px; font-size:.72rem; }
-.result { margin-left:auto; font-size:.8rem; font-weight:700; white-space:nowrap; }
+.result { margin-left:auto; font-size:.72rem; font-weight:650; white-space:pre-line; text-align:right; line-height:1.4; }
 footer { text-align:center; flex:none; }
 dialog { color:#182636; width:min(100% - 24px,560px); max-height:85dvh; overflow:auto; border:1px solid #aebdca; border-radius:12px; padding:20px; }
 dialog::backdrop { background:#14283a99; }

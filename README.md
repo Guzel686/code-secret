@@ -12,6 +12,10 @@ Les fichiers `index.html` et `style.css` décrivent la page et son apparence. `g
 
 ## Évolution J2 du 25 novembre 2026
 
+### Clarification des indices
+
+Retour de l’auteur sur la version à pastilles : le reste de la présentation convient, mais « Bien / Mal » et « 0 / 1 » sont peu compréhensibles. Modification ciblée du 25 novembre : chaque essai affiche désormais « Bien placées : 0 » puis « Mal placées : 1 » sur deux lignes. Attendu : libellés explicites sans modifier les indices calculés, les commandes ni le format compact. Obtenu localement : 8 tests réussis, avec vérification des textes et absence de débordement de page aux quatre formats du test navigateur. Moteur et tag J1 inchangés.
+
 **Avant modification.** L’auteur confirme le bon fonctionnement de la version à listes déroulantes sur son vrai smartphone **Fairphone 3, Chrome** : sélection et validation de quatre couleurs, un essai consommé, indices et historique lisibles, aucun problème signalé. Il demande ensuite des pastilles identifiables et une interface plus compacte.
 
 **Choix validé avec l’auteur.** Quatre emplacements numérotés et six pastilles R, B, V, J, O et Vi. Le nom complet reste affiché sous chaque couleur et est accessible aux lecteurs d’écran. Toucher une pastille remplit la position active et passe à la suivante ; toucher un emplacement permet de le modifier avant validation. Les boutons natifs fonctionnent aussi au clavier. Le bouton « Règles » ouvre une fenêtre avec les règles complètes ; le rappel 4 couleurs / 10 essais / répétitions reste affiché. Aucune règle ni fonction API ne change. Pas de PWA, de sauvegarde de partie ou de bouton QR ajouté.

@@ -49,7 +49,7 @@ function render(state) {
     entry.guess.forEach(color => colors.append(disc(color)));
     const result = document.createElement("p");
     result.className = "result";
-    result.textContent = `${entry.result.wellPlaced} / ${entry.result.misplaced}`;
+    result.textContent = `Bien placées : ${entry.result.wellPlaced}\nMal placées : ${entry.result.misplaced}`;
     result.setAttribute("aria-label", `${entry.result.wellPlaced} bien placées, ${entry.result.misplaced} mal placées`);
     item.append(number, colors, result);
     historyList.append(item);
